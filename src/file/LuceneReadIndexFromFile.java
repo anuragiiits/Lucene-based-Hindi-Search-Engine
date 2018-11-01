@@ -26,7 +26,7 @@ public class LuceneReadIndexFromFile
         IndexSearcher searcher = createSearcher();
          
         //Search indexed contents using search term
-        TopDocs foundDocs = searchInContent("IIITS IIITD", searcher);
+        TopDocs foundDocs = searchInContent("भाग" ,searcher);
          
         //Total found documents
         System.out.println("Total Results :: " + foundDocs.totalHits);
