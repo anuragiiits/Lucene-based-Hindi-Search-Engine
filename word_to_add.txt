@@ -1,0 +1,4 @@
+वस्तुएं
+ चिड़ियाँ नदीयाँ
+गतियाँ
+lucene is not searching the original words once they are stemmed eg, रातें  --> searches only रात , not रातें
