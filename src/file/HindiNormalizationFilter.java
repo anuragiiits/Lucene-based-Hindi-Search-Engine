@@ -50,8 +50,8 @@ public final class HindiNormalizationFilter extends TokenFilter {
   public boolean incrementToken() throws IOException {
     if (input.incrementToken()) {
       if (!keywordAtt.isKeyword())
-        termAtt.setLength(normalizer.normalize(termAtt.buffer(), 
-            termAtt.length()));
+        termAtt.setLength(normalizer.normalize(termAtt.buffer(), termAtt.length()));  
+
       return true;
     } 
     return false;

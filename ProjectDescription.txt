@@ -1,0 +1,75 @@
+LuceneWriteIndexFromFile.indexDoc  --> Add the fields to documents(Document.java). StringField contains path of file, LongPoint has last modified and TextField has Contents of file.
+
+Pass everything to writer.updateDocument()	[IndexWriter.java]
+
+Description of IndexWriter:
+  An <code>IndexWriter</code> creates and maintains an index.
+
+  <p>The {@link OpenMode} option on 
+  {@link IndexWriterConfig#setOpenMode(OpenMode)} determines 
+  whether a new index is created, or whether an existing index is
+  opened. Note that you can open an index with {@link OpenMode#CREATE}
+  even while readers are using the index. The old readers will 
+  continue to search the "point in time" snapshot they had opened, 
+  and won't see the newly created index until they re-open. If 
+  {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a
+  new index if there is not already an index at the provided path
+  and otherwise open the existing index.</p>
+
+  <p>In either case, documents are added with {@link #addDocument(Iterable)
+  addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link
+  #deleteDocuments(Query...)}. A document can be updated with {@link
+  #updateDocument(Term, Iterable) updateDocument} (which just deletes
+  and then adds the entire document). When finished adding, deleting 
+  and updating documents, {@link #close() close} should be called.</p>
+
+This will further call DocumentWriter.updateDocument(doc, analyser, term_path_to_delete)
+Description of updateDocument:
+	This class accepts multiple added documents and directly
+	 * writes segment files.
+	 *
+	 * Each added document is passed to the indexing chain,
+	 * which in turn processes the document into the different
+	 * codec formats.  Some formats write bytes to files
+	 * immediately, e.g. stored fields and term vectors, while
+	 * others are buffered by the indexing chain and written
+	 * only on flush.
+	 *
+	 * Once we have used our allowed RAM buffer, or the number
+	 * of added docs is large enough (in the case we are
+	 * flushing by doc count instead of RAM usage), we create a
+	 * real segment and flush it to the Directory.
+	 * Threads:
+	 * Multiple threads are allowed into addDocument at once.
+	 * There is an initial synchronized call to getThreadState
+	 * which allocates a ThreadState for this thread.  The same
+	 * thread will get the same ThreadState over time (thread
+	 * affinity) so that if there are consistent patterns (for
+	 * example each thread is indexing a different content
+	 * source) then we make better use of RAM.  Then
+	 * processDocument is called on that ThreadState without
+	 * synchronization (most of the "heavy lifting" is in this
+	 * call).  Finally the synchronized "finishDocument" is
+	 * called to flush changes to the directory.
+	 *
+	 * When flush is called by IndexWriter we forcefully idle
+	 * all threads and flush only once they are all idle.  This
+	 * means you can call flush with a given thread even while
+	 * other threads are actively adding/deleting documents.
+
+DocumentWriterPerThread.updateDocument(doc, analyser, ...)
+
+DocumentIndexingChain.processDocument()			--> handles indexing all types of fields
+
+DocumentIndexingChain.processField()
+
+
+
+
+HindiAnalyser Workflow:
+
+HindiStemFilter		-->   StopFilter [loop]   -->   HindiNormalization --> IndicNormailzation  --> DecimalDigitFilter[converts unicode to latin]  -->  LowerCaseFilter [Normalize into lower case]   -->   StandardTokenizer[Actually extracts the token]
+
+
+IndicNormalization Rules: http://languagelog.ldc.upenn.edu/myl/ldc/IndianScriptsUnicode.html
+DecimalDigitFilter: Converts different types of numbers in Latin number(0-9)

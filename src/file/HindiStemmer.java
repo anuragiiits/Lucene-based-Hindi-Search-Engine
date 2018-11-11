@@ -30,6 +30,7 @@ import static org.apache.lucene.analysis.util.StemmerUtil.*;
  */
 public class HindiStemmer {
   public int stem(char buffer[], int len) {
+//	  System.out.println(buffer);
     // 5
     if ((len > 6) && (endsWith(buffer, len, "ाएंगी")
         || endsWith(buffer, len, "ाएंगे")

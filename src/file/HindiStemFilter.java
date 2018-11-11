@@ -39,8 +39,9 @@ public final class HindiStemFilter extends TokenFilter {
   @Override
   public boolean incrementToken() throws IOException {
     if (input.incrementToken()) {
-      if (!keywordAtt.isKeyword())
+      if (!keywordAtt.isKeyword()) 
         termAtt.setLength(stemmer.stem(termAtt.buffer(), termAtt.length()));
+
       return true;
     } else {
       return false;
