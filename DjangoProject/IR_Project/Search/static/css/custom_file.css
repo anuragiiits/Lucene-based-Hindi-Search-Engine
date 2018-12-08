@@ -1,0 +1,17 @@
+.custom {
+  align-items: center;
+  margin-top: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.custom-result {
+  align-items: center;
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.wrapper{
+  margin: 10px auto 0 auto;
+}

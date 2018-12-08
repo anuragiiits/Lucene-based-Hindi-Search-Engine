@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block body %}
+<div class = "custom-result">
+  <div class="form-group">
+    <form action="{% url 'Search:search-page' %}" method="POST" class="form-inline active-cyan-3 active-cyan-4">
+      {% csrf_token %}
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-lg w-100" type="text" name="search_text" placeholder="Enter the text" aria-label="Search" required>
+      <div class="wrapper">
+       <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class = "custom-result">
+  <div class="form-group">
+    <form action="{% url "Search:upload-page" %}" method="POST" enctype="multipart/form-data" class="form-inline active-cyan-3 active-cyan-4">
+      {% csrf_token %}
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="form-control form-control-lg w-100" type="file" name="file" aria-label="Search" required>
+      <div class="wrapper">
+       <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class = "custom-result">
+  <div class="form-group">
+  {% for result in results %}
+    <a href="../../inputFiles/{{result.0.0}}">{{result.0.0}}</a> Score : {{result.0.1}} <br>
+    {% for line in result.1 %}
+      {{line}}<br>
+    {% endfor %}
+    <br>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
