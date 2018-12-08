@@ -3,7 +3,7 @@ package com.anurag.lucene.file;
 import java.io.IOException;
 import java.nio.file.Paths;
  
-//import org.apache.lucene.analysis.hi.HindiAnalyzer;
+
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;

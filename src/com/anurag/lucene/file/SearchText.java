@@ -7,6 +7,6 @@ public class SearchText {
 		LuceneReadIndexFromFile ob1 = new LuceneReadIndexFromFile();
 //		System.out.println("Args = "+args[0]);
 //		System.out.println("Args = "+args[1]);
-		ob1.searchText(args[0]); 
+		ob1.searchText("लता"); 
 	}
 }
