@@ -100,8 +100,8 @@ public class LuceneWriteIndexFromFile
         {
             //Create lucene Document
             Document doc = new Document();
-            System.out.println(new StringField("path", file.toString(), Field.Store.YES));
-             System.out.println(new String(Files.readAllBytes(file)));
+//            System.out.println(new StringField("path", file.toString(), Field.Store.YES));
+//             System.out.println(new String(Files.readAllBytes(file)));
             doc.add(new StringField("path", file.toString(), Field.Store.YES));
             doc.add(new LongPoint("modified", lastModified));
             doc.add(new TextField("contents", new String(Files.readAllBytes(file)), Store.YES));
