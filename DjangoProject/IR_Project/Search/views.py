@@ -20,7 +20,9 @@ def upload_page(request):
         fs = FileSystemStorage()
         filename = fs.save(myfile.name, myfile)
         try:
-            op = subprocess.check_output('java -jar /Users/anubhavujjawal/Desktop/cllg/sem-V/Information_retrieval/Lucene-based-Hindi-Search-Engine/DjangoProject/IR_Project/Search/CompiledJarFile/CreateIndex.jar', shell=True).decode("UTF-8")
+            pwd = subprocess.check_output('pwd').decode('utf-8')
+            # print(pwd)
+            op = subprocess.check_output('java -jar ' + str(pwd[:-1]) + '/Search/CompiledJarFile/CreateIndex.jar', shell=True).decode("UTF-8")
         except subprocess.CalledProcessError as e:
             messages.warning(request, "There is an error")
             print("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
@@ -38,7 +40,8 @@ def search_page(request):
         # s1 = "rabindranath"
         paths = []
         try:
-            op = subprocess.check_output('java -jar /Users/anubhavujjawal/Desktop/cllg/sem-V/Information_retrieval/Lucene-based-Hindi-Search-Engine/DjangoProject/IR_Project/Search/CompiledJarFile/SearchModel.jar '+text, shell=True).decode("UTF-8")
+            pwd = subprocess.check_output('pwd').decode('utf-8')
+            op = subprocess.check_output('java -jar ' + str(pwd[:-1]) + '/Search/CompiledJarFile/SearchModel.jar ' + text, shell=True).decode("UTF-8")
             op = str(op)
             lines = op.splitlines()
             count = int(lines[0].split(' ')[-1])
