@@ -4,6 +4,9 @@
 
 {% block body %}
   <div class = "custom">
+    <center>
+      <img src="{% static 'images/A6.png' %}" alt="Sahitya Khoz">
+    </center>
     <div class="form-group">
       <form action="{% url 'Search:search-page' %}" method="POST" class="form-inline active-cyan-3 active-cyan-4">
         {% csrf_token %}
@@ -23,8 +26,11 @@
       <h4>Upload Your File:</h4>
       <i class="fa fa-search" aria-hidden="true"></i>
       <!-- <input type="text" placeholder="Enter Email" name="email" required> -->
-      <input class="form-control form-control-lg w-100 form-custom" type="file" name="file" aria-label="Search" required>
-
+      <!-- <input class="form-control form-control-lg w-100 form-custom" type="file" name="file" aria-label="Search" required> -->
+      <div class="custom-file my-2">
+        <input type="file" class="w-100 custom-file-input"  name="file" id="customFile">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+      </div>
       <button type="submit" class="btn btn-success btn-sm">Upload</button>
       <button type="button" class="btn btn-danger btn-sm" onclick="closeForm()">Close</button>
     </form>
