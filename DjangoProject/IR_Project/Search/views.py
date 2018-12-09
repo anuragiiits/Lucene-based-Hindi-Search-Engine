@@ -41,7 +41,9 @@ def search_page(request):
         paths = []
         try:
             pwd = subprocess.check_output('pwd').decode('utf-8')
-            op = subprocess.check_output('java -jar ' + str(pwd[:-1]) + '/Search/CompiledJarFile/SearchModel.jar ' + text, shell=True).decode("UTF-8")
+            command = 'java -jar ' + str(pwd[:-1]) + '/Search/CompiledJarFile/SearchModel.jar \"' + text + '\"'
+            # print(command)
+            op = subprocess.check_output(command, shell=True).decode("UTF-8")
             op = str(op)
             lines = op.splitlines()
             count = int(lines[0].split(' ')[-1])
