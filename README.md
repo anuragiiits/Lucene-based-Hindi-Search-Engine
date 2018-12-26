@@ -1,9 +1,9 @@
 <h2>About This Project:</h2>
 Slides:
-https://github.com/anuragiiits/Lucene-based-Hindi-Search-Engine/blob/master/Reports/Project%20Presentation%20Slides.pdf
+https://github.com/anuragiiits/Lucene-based-Hindi-Search-Engine/blob/master/Reports/Final_Report.pdf
 
 Project Report:
-https://github.com/anuragiiits/Lucene-based-Hindi-Search-Engine/blob/master/Reports/Final%20Report%20IR%20Project.pdf
+https://github.com/anuragiiits/Lucene-based-Hindi-Search-Engine/blob/master/Reports/Project_Slides.pdf
 
 <h2>Steps to run the project:</h2>
 Step1:
